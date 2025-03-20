@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+    <style>
+      body {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        width: 700px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #seconds {
+        color: green;
+      }
+
+      #miliseconds {
+        color: red;
+      }
+
+      .time {
+        font-size: 48px;
+      }
+
+      .buttonContainer > .startTimer {
+        background-color: green;
+        border: none;
+        padding: 10px;
+        color: white;
+      }
+
+      .buttonContainer > .stopTimer {
+        background-color: yellow;
+        border: none;
+        padding: 10px;
+      }
+
+      .buttonContainer > .resetTimer {
+        background-color: red;
+        border: none;
+        padding: 10px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h1 class="time">
+          <span id="seconds">000</span>:<span id="miliseconds">00</span>
+        </h1>
+      </div>
+      <div class="buttonContainer">
+        <button onclick="startTimer()" class="startTimer">Start Timer</button>
+        <button onclick="stopTimer()" class="stopTimer">Stop Timer</button>
+        <button onclick="resetTimer()" class="resetTimer">Reset Timer</button>
+      </div>
+    </div>
+
+    <script>
+      let count = 0;
+      let miliseconds;
+      let seconds;
+      let intervalId;
+
+      function update() {
+        miliseconds = count % 100;
+        seconds = Math.floor(count / 100);
+
+        displayedSeconds =
+          seconds < 10
+            ? `00${seconds}`
+            : seconds < 100
+            ? `0${seconds}`
+            : seconds;
+
+        displayedMiliseconds =
+          miliseconds < 10 ? `0${miliseconds}` : miliseconds;
+        document.querySelector("#seconds").textContent = displayedSeconds;
+        document.querySelector("#miliseconds").textContent =
+          displayedMiliseconds;
+
+        count++;
+      }
+
+      function startTimer() {
+        if (!intervalId) {
+          intervalId = setInterval(() => {
+            update();
+          }, 10);
+        }
+      }
+
+      function stopTimer() {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+
+      function resetTimer() {
+        clearInterval(intervalId);
+        intervalId = null;
+
+        count = 0;
+
+        update();
+      }
+    </script>
+  </body>
+</html>
