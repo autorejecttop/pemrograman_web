@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bola Bergerak</title>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        margin: auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 700px;
+        height: 400px;
+        background-color: green;
+      }
+
+      .ball {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        border-radius: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="ball"></div>
+    </div>
+
+    <script async>
+      const ball = document.querySelector(".ball");
+      const positionAddition = 1;
+
+      ball.style.left = "-100px";
+      ball.style.top = "175px";
+
+      let rightBottomId = setInterval(() => {
+        if (ball.style.left !== "650px") {
+          ball.style.left = `${parseInt(ball.style.left) + positionAddition}px`;
+        } else if (ball.style.top !== "350px") {
+          ball.style.top = `${parseInt(ball.style.top) + positionAddition}px`;
+        } else {
+          clearInterval(rightBottomId);
+          rightBottomId = null;
+        }
+      }, 10);
+
+      let leftId = setInterval(() => {
+        if (!rightBottomId) {
+          if (ball.style.left !== "-50px") {
+            ball.style.left = `${
+              parseInt(ball.style.left) - positionAddition
+            }px`;
+          } else {
+            clearInterval(leftId);
+            leftId = null;
+          }
+        }
+      }, 10);
+    </script>
+  </body>
+</html>
