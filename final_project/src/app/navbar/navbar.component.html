@@ -1,0 +1,19 @@
+<nav class="px-4 md:px-6 bg-[#E7F0DC]">
+  <div class="mx-auto flex justify-between items-center xl:w-7xl">
+    <a routerLink="/">
+      <div class="w-32 h-16 md:w-48 md:h-24 relative">
+        <img ngSrc="/logo.svg" [fill]="true" alt="Mr. AI Logo" />
+      </div>
+    </a>
+
+    <div class="w-9 h-9 md:w-12 md:h-12 relative">
+      <img class="xl:hidden" ngSrc="/menu.svg" [fill]="true" alt="Menu icon" />
+    </div>
+
+    <ul class="hidden xl:flex gap-12">
+      <li><a class="text-2xl font-bold" routerLink="/">Home</a></li>
+      <li><a class="text-2xl font-bold" routerLink="/">About</a></li>
+      <li><a class="text-2xl font-bold" routerLink="/">Contact</a></li>
+    </ul>
+  </div>
+</nav>
