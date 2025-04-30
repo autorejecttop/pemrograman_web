@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Fungsi Dasar jQuery</title>
+  <style>
+    .aktif {
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+
+    /*
+    Fungsi jQuery	                    Kegunaan
+    hide()	                            Menyembunyikan elemen
+    show()	                            Menampilkan elemen
+    toggle()	                        Menyembunyikan/memperlihatkan otomatis
+    css()	                            Mengubah gaya CSS langsung
+    addClass()	                        Menambahkan class (untuk styling)
+    removeClass()	                    Menghapus class dari elemen
+    */
+
+  </script>
+</head>
+<body>
+
+  <h2 id="elemen">Halo, saya teks yang bisa dimanipulasi!</h2>
+
+  <button onclick="$('#elemen').hide()">Sembunyikan</button>
+  <button onclick="$('#elemen').show()">Tampilkan</button>
+  <button onclick="$('#elemen').toggle()">Toggle</button>
+  <button onclick="$('#elemen').css('color', 'red')">Ubah Warna Merah</button>
+  <button onclick="$('#elemen').addClass('aktif')">Tambah Class</button>
+  <button onclick="$('#elemen').removeClass('aktif')">Hapus Class</button>
+
+</body>
+</html>

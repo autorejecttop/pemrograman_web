@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Bola Bergerak Sederhana</title>
+</head>
+<body>
+
+<canvas id="kanvas" width="800" height="300"></canvas>
+
+<script>
+    // Ambil elemen canvas
+    const canvas = document.getElementById("kanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Atur posisi bola
+    let x = 50;
+    let y = 150;
+    let keKanan = true; // arah bola
+
+    function gambarBola() {
+        // Bersihkan canvas dulu
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Gambar bola
+        ctx.beginPath();
+        ctx.arc(x, y, 20, 0, Math.PI * 2); // x, y, radius, start angle, end angle
+        ctx.fillStyle = "blue";
+        ctx.fill();
+        ctx.closePath();
+
+        // Gerakkan bola
+        if (keKanan) {
+            x += 2; // geser kanan
+            if (x > canvas.width - 20) {
+                keKanan = false; // kalau mentok kanan, balik arah
+            }
+        } else {
+            x -= 2; // geser kiri
+            if (x < 20) {
+                keKanan = true; // kalau mentok kiri, balik arah
+            }
+        }
+
+        // Jalankan fungsi ini lagi
+        requestAnimationFrame(gambarBola);
+    }
+
+    // Mulai animasi
+    gambarBola();
+
+
+/* Penjelasan:
+Bagian Program	                            Penjelasan
+<canvas>	                                Tempat menggambar di browser.
+getContext('2d')	                        Supaya bisa menggambar 2D di canvas.
+arc(x, y, r, 0, Math.PI * 2)	            Buat lingkaran untuk bola.
+clearRect()	                                Hapus gambar lama biar tidak numpuk.
+x += 2 / x -= 2	                            Geser bola kanan atau kiri.
+requestAnimationFrame()	                    Buat animasi mulus berulang.
+*/
+
+</script>
+
+</body>
+</html>

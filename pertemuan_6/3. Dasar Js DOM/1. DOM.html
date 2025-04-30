@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <title>Contoh DOM Lengkap</title>
+  </head>
+  <body>
+    <h1 id="judul">Halo Dunia!</h1>
+    <button onclick="ubahTeks()">Ubah Teks</button> <br />
+    <button onclick="ubahWarna()">Ubah Warna Background</button> <br /><br />
+
+    <div id="kontainer"></div>
+    <button onclick="tambahParagraf()">Tambah Teks</button> <br /><br />
+
+    <p id="hapusSaya">Ini paragraf yang bisa dihapus.</p>
+    <button onclick="hapusParagraf()">Hapus Paragraf</button> <br /><br />
+
+    <ul id="daftar">
+      <li>Item 1</li>
+      <li>Item 2</li>
+    </ul>
+    <button onclick="hapusSemuaItem()">Hapus Semua Item</button>
+
+    <script>
+      /*DOM = Document Object Model
+Artinya: JavaScript bisa mengambil, mengubah, atau menghapus elemen di HTML.*/
+
+      function ubahTeks() {
+        const elemen = document.getElementById("judul");
+        elemen.innerText = "Teks Berubah!";
+      }
+
+      /*document.getElementById() untuk mengambil elemen HTML.
+innerText untuk mengubah isi teks.*/
+
+      function ubahWarna() {
+        document.body.style.backgroundColor = "#4CAF50"; // Mengubah warna latar belakang menjadi hijau
+        alert("Warna latar belakang telah diubah!"); // Menampilkan pesan alert
+      }
+
+      /*document.body.style.backgroundColor untuk mengubah warna latar belakang*/
+
+      function tambahParagraf() {
+        const p = document.createElement("p"); // buat elemen <p>
+        p.innerText = "Ini paragraf baru!";
+        document.getElementById("kontainer").appendChild(p); // masukkan ke div
+      }
+
+      /*createElement dipakai untuk membuat elemen baru.
+appendChild dipakai untuk menambahkan ke halaman.*/
+
+      function hapusParagraf() {
+        const p = document.getElementById("hapusSaya"); // cari elemen dengan id "hapusSaya"
+        p.remove(); // hapus elemen tersebut
+      }
+
+      /*remove dipakai untuk menghapus elemen dari halaman*/
+
+      function hapusSemuaItem() {
+        const daftar = document.getElementById("daftar"); // cari ul dengan id "daftar"
+        daftar.innerHTML = ""; // kosongkan seluruh isinya
+      }
+
+      /*innerHTML = "" dipakai untuk menghapus semua isi dari elemen.*/
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Belajar jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"> // Tambahkan CDN jQuery di dalam <head> atau sebelum </body>, sebagai librarynya. 
+
+/*jQuery adalah library JavaScript ringan yang menyederhanakan manipulasi HTML, event handling, animasi, dan AJAX. 
+Dengan jQuery, kita bisa menulis kode yang lebih ringkas dan kompatibel di berbagai browser.*/
+  </script>
+</head>
+<body>
+
+  <button id="tombol">Klik Saya</button>
+  <p id="teks">Teks awal</p>
+
+  <script>
+    $(document).ready(function() {
+      $("#tombol").click(function() {
+        $("#teks").text("Teks telah diubah!");
+      });
+    });
+
+  /*
+  Penjelasan:
+  $(document).ready() memastikan jQuery berjalan setelah halaman dimuat.
+  $("#tombol").click() artinya: saat tombol diklik, lakukan aksi tertentu.
+  $("#teks").text() mengubah isi teks.
+  */  
+  </script>
+</body>
+</html>

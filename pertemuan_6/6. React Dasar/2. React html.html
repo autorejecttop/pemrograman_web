@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kalkulator Sederhana</title>
+    <!-- Memuat React dan ReactDOM dari CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Memuat Babel untuk mendukung JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- Elemen ini akan menjadi tempat aplikasi React kita ditampilkan -->
+    <div id="root"></div>
+
+    <!-- Script dengan tipe text/babel untuk mendukung JSX -->
+    <script type="text/babel">
+      // Komponen utama kalkulator
+      function Kalkulator() {
+        // Mendefinisikan state untuk angka pertama, angka kedua, dan hasil
+        const [angka1, setAngka1] = React.useState('');
+        const [angka2, setAngka2] = React.useState('');
+        const [hasil, setHasil] = React.useState(null);
+
+        // Fungsi untuk menghitung jumlah dari dua angka
+        const hitungJumlah = () => {
+          // Mengonversi input menjadi angka dan menjumlahkannya
+          const jumlah = parseFloat(angka1) + parseFloat(angka2);
+          // Menyimpan hasil penjumlahan ke dalam state
+          setHasil(jumlah);
+        };
+
+        // Mengembalikan elemen-elemen yang akan ditampilkan di halaman
+        return (
+          <div>
+            <h1>Kalkulator Sederhana</h1>
+            {/* Input untuk angka pertama */}
+            <input
+              type="number"
+              value={angka1}
+              onChange={(e) => setAngka1(e.target.value)}
+              placeholder="Masukkan angka pertama"
+            />
+            <br />
+            {/* Input untuk angka kedua */}
+            <input
+              type="number"
+              value={angka2}
+              onChange={(e) => setAngka2(e.target.value)}
+              placeholder="Masukkan angka kedua"
+            />
+            <br />
+            {/* Tombol untuk menghitung jumlah */}
+            <button onClick={hitungJumlah}>Hitung Jumlah</button>
+            {/* Menampilkan hasil jika sudah dihitung */}
+            {hasil !== null && (
+              <p>Hasil: {hasil}</p>
+            )}
+          </div>
+        );
+      }
+
+      // Menemukan elemen dengan id 'root' dan merender komponen Kalkulator di dalamnya
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<Kalkulator />);
+    </script>
+  </body>
+</html>

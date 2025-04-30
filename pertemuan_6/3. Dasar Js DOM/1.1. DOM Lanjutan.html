@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Belajar JavaScript - Halaman Menarik</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 2em;
+      transition: color 0.5s;
+    }
+    #kotak {
+      width: 100px;
+      height: 100px;
+      background: #fff;
+      border-radius: 20px;
+      margin: 20px 0;
+      transition: all 0.5s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .btn {
+      background-color: #4e54c8;
+      color: white;
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #5b6ee1;
+      transform: scale(1.05);
+    }
+    input[type="text"] {
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      width: 220px;
+      margin-top: 10px;
+      font-size: 16px;
+      text-align: center;
+    }
+    #outputNama {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #444;
+      min-height: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="judul">👋 Halo, Selamat Datang!</h1>
+
+  <div id="kotak"></div>
+
+  <button class="btn" id="gantiWarna">Ganti Warna</button>
+  <button class="btn" id="perbesar">Perbesar</button>
+  <button class="btn" id="kecilkan">Kecilkan</button>
+
+  <br><br>
+
+  <input type="text" id="inputNama" placeholder="Masukkan Nama Anda">
+  <br>
+  <button class="btn" id="tampilkanNama">Tampilkan Nama</button>
+
+  <p id="outputNama"></p>
+
+  <script>
+    const kotak = document.getElementById("kotak");
+    const judul = document.getElementById("judul");
+    const inputNama = document.getElementById("inputNama");
+    const outputNama = document.getElementById("outputNama");
+
+    document.getElementById("gantiWarna").addEventListener("click", () => {
+      kotak.style.backgroundColor = getRandomColor();
+      kotak.style.transform = "rotate(20deg)";
+      setTimeout(() => {
+        kotak.style.transform = "rotate(0deg)";
+      }, 500);
+    });
+
+    document.getElementById("perbesar").addEventListener("click", () => {
+      kotak.style.width = "200px";
+      kotak.style.height = "200px";
+    });
+
+    document.getElementById("kecilkan").addEventListener("click", () => {
+      kotak.style.width = "100px";
+      kotak.style.height = "100px";
+    });
+
+    document.getElementById("tampilkanNama").addEventListener("click", () => {
+      const nama = inputNama.value.trim();
+      if (nama) {
+        outputNama.textContent = `Halo, ${nama}! 👋 Senang bertemu denganmu.`;
+        judul.textContent = `Selamat Datang, ${nama}! 🎉`;
+      } else {
+        outputNama.textContent = "⚠️ Tolong masukkan nama!";
+      }
+    });
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let warna = '#';
+      for (let i = 0; i < 6; i++) {
+        warna += letters[Math.floor(Math.random() * 16)];
+      }
+      return warna;
+    }
+
+ /*
+    Penjelasan:
+Fitur	                        Penjelasan
+transition	                    Membuat efek perubahan ukuran, rotasi, warna jadi halus.
+hover pada .btn	                Membuat tombol efek membesar dan warna berubah saat mouse diarahkan.
+flexbox di <body>	            Membuat semua konten di tengah-tengah halaman, rapi di semua layar.
+rotate animation	            Saat kotak diganti warna, kotak akan berputar sebentar.
+input + tombol	                Meminta nama dari pengguna, lalu menampilkannya di layar.
+background gradient	            Memberikan kesan modern dengan warna gradasi biru ke ungu.
+*/
+
+
+  </script>
+
+</body>
+</html>

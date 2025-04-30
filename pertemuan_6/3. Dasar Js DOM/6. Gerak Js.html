@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Lingkaran Bergerak</title>
+</head>
+<body>
+
+<canvas id="kanvas" width="400" height="400"></canvas>
+
+<script>
+//setInterval (mengganti requestAnimationFrame)
+
+    const canvas = document.getElementById("kanvas");
+    const ctx = canvas.getContext("2d");
+
+    let x = 50;
+
+    function gambar() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.beginPath();
+        ctx.arc(x, 200, 30, 0, Math.PI * 2);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.closePath();
+
+        x += 2; // Bola bergerak ke kanan
+    }
+
+    setInterval(gambar, 30); // Gambar setiap 30ms
+
+/* Penjelasan:
+clearRect() → hapus gambar sebelumnya biar tidak numpuk.
+x += 2 → posisi x bola bertambah terus.
+setInterval → menggambar ulang tiap 30 milidetik.
+*/
+    
+</script>
+
+</body>
+</html>

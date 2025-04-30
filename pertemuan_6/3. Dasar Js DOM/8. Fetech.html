@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>Fetch Data</title>
+</head>
+<body>
+
+<button onclick="ambilData()">Ambil Data User</button>
+<div id="hasil"></div>
+
+<script>
+/*🔹 Fetch adalah fitur di JavaScript yang digunakan untuk mengambil data dari server atau API.
+Ibaratnya kamu mengirim permintaan ke restoran:
+Kalau sukses ➔ kamu dapat makanan (data).
+Kalau gagal ➔ kamu dapat pesan error.*/
+
+function ambilData() {
+  fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(data => {
+      let output = '';
+      data.forEach(user => {
+        output += `<p>Nama: ${user.name}</p>`;
+        output += `<p>Email: ${user.email}</p>`;
+        output += `<p>username: ${user.username}</p>`;
+      });
+      document.getElementById('hasil').innerHTML = output;
+    })
+    .catch(error => {
+      document.getElementById('hasil').innerHTML = 'Gagal mengambil data.';
+      console.log(error);
+    });
+}
+//Klik tombol ➔ Website akan mengambil data dari internet ➔ Muncul daftar nama user.
+
+
+</script>
+
+</body>
+</html>

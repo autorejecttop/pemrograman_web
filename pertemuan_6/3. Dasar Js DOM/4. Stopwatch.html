@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Stopwatch Dasar</title>
+</head>
+<body>
+
+  <h1 id="waktu">0 : 00</h1>
+
+  <button onclick="mulai()">Mulai</button>
+  <button onclick="berhenti()">Berhenti</button>
+  <button onclick="reset()">Reset</button>
+
+  <script>
+    let detik = 0;
+    let milidetik = 0;
+    let interval = null;
+
+    function tampilkanWaktu() {
+      const elemenWaktu = document.getElementById('waktu');
+      elemenWaktu.innerText = detik + " : " + (milidetik < 10 ? '0' : '') + milidetik;
+    }
+
+    function mulai() {
+      if (interval) return; // Biar tidak dobel interval
+
+      interval = setInterval(function() {
+        milidetik++;
+        if (milidetik >= 100) {
+          milidetik = 0;
+          detik++;
+        }
+        tampilkanWaktu();
+      }, 10);
+    }
+
+    function berhenti() {
+      clearInterval(interval);
+      interval = null;
+    }
+
+    function reset() {
+      clearInterval(interval);
+      interval = null;
+      detik = 0;
+      milidetik = 0;
+      tampilkanWaktu();
+    }
+
+
+
+/* Penjelasan:
+Bagian	                                Fungsinya
+<h1 id="waktu">	                        Tempat menampilkan angka stopwatch.
+<button onclick="...">	                Saat tombol diklik, jalankan fungsi JavaScript tertentu.
+setInterval()	                        Jalanin per 10 milidetik untuk nambahin waktu.
+clearInterval()	                        Berhentiin stopwatch.
+innerText	                            Mengganti tulisan angka di layar.
+*/
+
+</script>
+
+</body>
+</html>

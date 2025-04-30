@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>Contoh Event</title>
+</head>
+<body>
+
+<button id="klikSaya">Klik Saya!</button>
+
+<script>
+    /*Event handling adalah menjalankan fungsi saat user melakukan aksi (klik, ketik, dll).
+    Contoh: saat tombol diklik, tampilkan alert.*/
+    
+  const tombol = document.getElementById("klikSaya");
+
+  tombol.addEventListener("click", function() {
+    alert("Tombol diklik!");
+  });
+
+
+/*Penjelasan:
+addEventListener("click", function...) artinya: kalau tombol diklik, jalankan fungsi.*/
+
+</script>
+
+</body>
+</html>

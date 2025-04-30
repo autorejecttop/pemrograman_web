@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Gambar Lingkaran</title>
+</head>
+<body>
+
+<canvas id="kanvas" width="400" height="400"></canvas>
+
+<script>
+    const canvas = document.getElementById("kanvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.beginPath();
+    ctx.arc(200, 200, 50, 0, Math.PI * 2);
+    ctx.fillStyle = "#FF0000"; // Merah
+    ctx.fill();
+    ctx.closePath();
+
+/* Penjelasan:
+Penjelasan:
+getContext('2d') → ambil kuas 2D.
+arc(x, y, radius, mulai, sampai) → gambar lingkaran.
+fillStyle dan fill() → memberi warna dan mengisi bentuk. 
+*/
+
+</script>
+
+</body>
+</html>

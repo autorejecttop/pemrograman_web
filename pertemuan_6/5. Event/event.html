@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Contoh Event JavaScript Sehari-hari</title>
+</head>
+<body>
+
+  <!-- ✅ Event click -->
+  <h2>1. Event Click</h2>
+  <button id="haloBtn">Halo!</button>
+  <p id="pesan"></p>
+
+  <!-- ✅ Event submit -->
+  <h2>2. Validasi Form</h2>
+  <form id="form">
+    <input type="text" id="nama" placeholder="Masukkan nama">
+    <button type="submit">Kirim</button>
+  </form>
+  <p id="notifikasi"></p>
+
+  <!-- ✅ Event mouseover dan mouseout -->
+  <h2>3. Hover Warna</h2>
+  <div id="kotak" style="width:100px; height:100px; background:blue;"></div>
+
+  <!-- ✅ Event keydown -->
+  <h2>4. Event Keydown</h2>
+  <input type="text" id="inputKeyboard" placeholder="Tekan tombol keyboard">
+  <p id="tombolDitekan"></p>
+
+  <!-- ✅ Event change -->
+  <h2>5. Event Change</h2>
+  <select id="warnaSelect">
+    <option value="">Pilih warna</option>
+    <option value="merah">Merah</option>
+    <option value="hijau">Hijau</option>
+    <option value="biru">Biru</option>
+  </select>
+  <p id="warnaDipilih"></p>
+
+  <script>
+    // CLICK
+    document.getElementById("haloBtn").addEventListener("click", function() {
+      document.getElementById("pesan").innerText = "Halo, selamat datang!";
+    });
+
+    // SUBMIT
+    document.getElementById("form").addEventListener("submit", function(e) {
+      e.preventDefault(); // agar tidak reload
+      const nama = document.getElementById("nama").value;
+
+      if (nama === "") {
+        document.getElementById("notifikasi").innerText = "Nama wajib diisi!";
+      } else {
+        document.getElementById("notifikasi").innerText = "Terima kasih, " + nama;
+      }
+    });
+
+    // MOUSEOVER dan MOUSEOUT
+    const kotak = document.getElementById("kotak");
+    kotak.addEventListener("mouseover", function() {
+      kotak.style.background = "red";
+    });
+    kotak.addEventListener("mouseout", function() {
+      kotak.style.background = "blue";
+    });
+
+    // KEYDOWN
+    const inputKeyboard = document.getElementById("inputKeyboard");
+    inputKeyboard.addEventListener("keydown", function(event) {
+      document.getElementById("tombolDitekan").innerText = "Tombol ditekan: " + event.key;
+    });
+
+    // CHANGE
+    const warnaSelect = document.getElementById("warnaSelect");
+    warnaSelect.addEventListener("change", function() {
+      const warna = warnaSelect.value;
+      document.getElementById("warnaDipilih").innerText = "Warna yang dipilih: " + warna;
+    });
+    /*
+    Event	                Fungsinya
+    click	                Saat pengguna mengeklik tombol
+    submit	                Ketika form dikirim (tombol diklik)
+    mouseover / mouseout	Saat kursor masuk dan keluar dari elemen
+    keydown	                Saat pengguna menekan tombol di keyboard
+    change	                Saat pilihan/select berubah
+    */
+  </script>
+
+</body>
+</html>

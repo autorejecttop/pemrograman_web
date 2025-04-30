@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>Contoh Timer</title>
+</head>
+<body>
+
+<h1 id="waktu">0</h1>
+<button onclick="mulai()">Start</button>
+<button onclick="berhenti()">Stop</button>
+
+<script>
+
+ /*
+setInterval → menjalankan fungsi berulang setiap beberapa waktu.
+clearInterval → menghentikan pengulangan itu.
+*/
+
+  let hitung = 0;
+  let timer = null;
+
+  function mulai() {
+    if (timer) return; // Jangan buat banyak timer
+    timer = setInterval(() => {
+      hitung++;
+      document.getElementById("waktu").innerText = hitung;
+    }, 1000); // setiap 1000ms (1 detik)
+  }
+
+  function berhenti() {
+    clearInterval(timer);
+    timer = null;
+  }
+
+/* Penjelasan:
+setInterval(..., 1000) = setiap 1 detik, tambah angka 1.
+clearInterval(timer) = berhenti menghitung.
+*/
+
+
+
+</script>
+
+</body>
+</html>
