@@ -5,6 +5,8 @@ import { MatSortModule, MatSort } from '@angular/material/sort';
 import { UsersDataSource } from './users-datasource';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-users',
@@ -16,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
+    MatButtonModule,
   ],
 })
 export class UsersComponent implements AfterViewInit {

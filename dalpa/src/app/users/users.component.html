@@ -1,10 +1,18 @@
-<div class="mat-elevation-z2">
-  <mat-form-field>
+<main id="users" class="mat-elevation-z2">
+  <div id="users-header-container">
+    <h1>Users</h1>
+
+    <button mat-fab aria-label="Create a new user">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <mat-form-field id="users-filter">
     <mat-label>Filter</mat-label>
     <input
       matInput
       (keyup)="applyFilter($event)"
-      placeholder="Ex. ium"
+      placeholder="ex. John Doe"
       #input
     />
   </mat-form-field>
@@ -67,4 +75,4 @@
     aria-label="Select page"
   >
   </mat-paginator>
-</div>
+</main>

@@ -53,6 +53,37 @@ html {
       color: white,
     )
   );
+
+  #users {
+    padding: 0px 32px;
+
+    #users-header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+
+      @include mat.fab-overrides(
+        (
+          container-color: #3674b5,
+        )
+      );
+    }
+
+    #users-filter {
+      &,
+      input,
+      mat-label {
+        width: 100%;
+      }
+    }
+
+    @include mat.table-overrides(
+      (
+        header-headline-color: #3674b5,
+      )
+    );
+  }
 }
 
 html,
