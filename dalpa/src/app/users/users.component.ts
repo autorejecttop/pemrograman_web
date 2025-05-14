@@ -3,12 +3,20 @@ import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
 import { UsersDataSource } from './users-datasource';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule],
+  imports: [
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
 })
 export class UsersComponent implements AfterViewInit {
   readonly paginator = viewChild.required(MatPaginator);
@@ -31,5 +39,14 @@ export class UsersComponent implements AfterViewInit {
     this.dataSource.sort = this.sort();
     this.dataSource.paginator = this.paginator();
     this.table().dataSource = this.dataSource;
+  }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.setFilter(filterValue.trim().toLowerCase());
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

@@ -2,7 +2,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
+import { signal } from '@angular/core';
 
 // TODO: Replace this with your own data model type
 export interface UsersItem {
@@ -83,6 +84,9 @@ export class UsersDataSource extends DataSource<UsersItem> {
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
+  private filterSubject = new BehaviorSubject<string>('');
+  filter$ = this.filterSubject.asObservable();
+
   constructor() {
     super();
   }
@@ -99,10 +103,13 @@ export class UsersDataSource extends DataSource<UsersItem> {
       return merge(
         observableOf(this.data),
         this.paginator.page,
-        this.sort.sortChange
+        this.sort.sortChange,
+        this.filter$
       ).pipe(
         map(() => {
-          return this.getPagedData(this.getSortedData([...this.data]));
+          return this.getPagedData(
+            this.getSortedData(this.getFilteredData([...this.data]))
+          );
         })
       );
     } else {
@@ -161,6 +168,19 @@ export class UsersDataSource extends DataSource<UsersItem> {
           return 0;
       }
     });
+  }
+
+  public setFilter(value: string) {
+    this.filterSubject.next(value);
+  }
+
+  private getFilteredData(data: UsersItem[]): UsersItem[] {
+    return data.filter((user) =>
+      Object.values(user)
+        .join('')
+        .toLowerCase()
+        .includes(this.filterSubject.value)
+    );
   }
 }
 
