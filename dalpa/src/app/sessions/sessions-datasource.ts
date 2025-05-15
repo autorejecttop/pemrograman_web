@@ -2,36 +2,54 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface SessionsItem {
-  name: string;
   id: number;
+  patientName: string;
+  start: string;
+  end: string;
+  psychologistName: string;
 }
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: SessionsItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
+  {
+    id: 1,
+    patientName: 'Jane Doe',
+    start: '2025-05-13 03:18:10',
+    end: '2025-05-13 04:18:10',
+    psychologistName: 'Muhammad Rafli Afriansyah Ikhsan',
+  },
+  {
+    id: 2,
+    patientName: 'John Doe',
+    start: '2025-05-13 04:18:10',
+    end: '2025-05-13 05:18:10',
+    psychologistName: 'Muhammad Rafli Afriansyah Ikhsan',
+  },
+  {
+    id: 3,
+    patientName: 'Fulan bin Fulan',
+    start: '2025-05-13 05:18:10',
+    end: '2025-05-13 06:18:10',
+    psychologistName: 'Muhammad Rafli Afriansyah Ikhsan',
+  },
+  {
+    id: 4,
+    patientName: 'Fulanti binti Fulanti',
+    start: '2025-05-13 06:18:10',
+    end: '2025-05-13 07:18:10',
+    psychologistName: 'Muhammad Rafli Afriansyah Ikhsan',
+  },
+  {
+    id: 5,
+    patientName: 'Jane Doe',
+    start: '2025-05-13 07:18:10',
+    end: '2025-05-13 08:18:10',
+    psychologistName: 'Ikhsan Afriansyah Rafli Muhammad',
+  },
 ];
 
 /**
@@ -43,6 +61,9 @@ export class SessionsDataSource extends DataSource<SessionsItem> {
   data: SessionsItem[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
+
+  private filterSubject = new BehaviorSubject<string>('');
+  filter$ = this.filterSubject.asObservable();
 
   constructor() {
     super();
@@ -57,12 +78,22 @@ export class SessionsDataSource extends DataSource<SessionsItem> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
-      return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
-        .pipe(map(() => {
-          return this.getPagedData(this.getSortedData([...this.data ]));
-        }));
+      return merge(
+        observableOf(this.data),
+        this.paginator.page,
+        this.sort.sortChange,
+        this.filter$
+      ).pipe(
+        map(() => {
+          return this.getPagedData(
+            this.getSortedData(this.getFilteredData([...this.data]))
+          );
+        })
+      );
     } else {
-      throw Error('Please set the paginator and sort on the data source before connecting.');
+      throw Error(
+        'Please set the paginator and sort on the data source before connecting.'
+      );
     }
   }
 
@@ -97,15 +128,41 @@ export class SessionsDataSource extends DataSource<SessionsItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
-        default: return 0;
+        case 'ID':
+          return compare(+a.id, +b.id, isAsc);
+        case 'Patient Name':
+          return compare(a.patientName, b.patientName, isAsc);
+        case 'Start':
+          return compare(a.start, b.start, isAsc);
+        case 'End':
+          return compare(a.end, b.end, isAsc);
+        case 'Psychologist Name':
+          return compare(a.psychologistName, b.psychologistName, isAsc);
+        default:
+          return 0;
       }
     });
+  }
+
+  public setFilter(value: string) {
+    this.filterSubject.next(value);
+  }
+
+  private getFilteredData(data: SessionsItem[]): SessionsItem[] {
+    return data.filter((user) =>
+      Object.values(user)
+        .join('')
+        .toLowerCase()
+        .includes(this.filterSubject.value)
+    );
   }
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a: string | number, b: string | number, isAsc: boolean): number {
+function compare(
+  a: string | number,
+  b: string | number,
+  isAsc: boolean
+): number {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

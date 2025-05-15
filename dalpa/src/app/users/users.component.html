@@ -1,4 +1,4 @@
-<main id="users" class="mat-elevation-z2">
+<main id="users-container" class="mat-elevation-z2">
   <div id="users-header-container">
     <h1>Users</h1>
 
@@ -7,12 +7,12 @@
     </button>
   </div>
 
-  <mat-form-field id="users-filter">
+  <mat-form-field id="sessions-filter">
     <mat-label>Filter</mat-label>
     <input
       matInput
       (keyup)="applyFilter($event)"
-      placeholder="ex. John Doe"
+      placeholder="ex. Jane Doe"
       #input
     />
   </mat-form-field>
