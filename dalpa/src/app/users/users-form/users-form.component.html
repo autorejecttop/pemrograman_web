@@ -1,1 +1,65 @@
-<p>users-form works!</p>
+<main>
+  <section class="users-form-header-container">
+    <button
+      routerLink="/users"
+      mat-icon-button
+      aria-label="Go back to users page"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Create New User</h1>
+  </section>
+
+  <section class="users-form">
+    <mat-form-field>
+      <mat-label>NIK</mat-label>
+      <input matInput placeholder="ex. 0123456789101112" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="ex. Jane Doe" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Role</mat-label>
+      <mat-select value="patient">
+        <mat-option value="patient">Patient</mat-option>
+        <mat-option value="psychologist">Psychologist</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sex</mat-label>
+      <mat-select>
+        <mat-option value="man">Man</mat-option>
+        <mat-option value="woman">Woman</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Phone Number</mat-label>
+      <span matTextPrefix>+62 &nbsp;</span>
+      <input type="tel" matInput placeholder="812-4567-891" />
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="ex. jane.doe@student.uisi.ac.id" />
+    </mat-form-field>
+
+    <button mat-flat-button>Create User</button>
+  </section>
+</main>
