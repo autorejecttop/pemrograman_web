@@ -136,7 +136,7 @@ export class PaymentsDataSource extends DataSource<PaymentsItem> {
       switch (this.sort?.active) {
         case 'ID':
           return compare(+a.id, +b.id, isAsc);
-        case 'Pantient Name':
+        case 'Patient Name':
           return compare(a.patientName, b.patientName, isAsc);
         case 'Amount':
           return compare(a.amount, b.amount, isAsc);
