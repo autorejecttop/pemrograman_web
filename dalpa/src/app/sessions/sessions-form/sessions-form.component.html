@@ -1,0 +1,47 @@
+<main>
+  <section class="sessions-form-header-container">
+    <button
+      routerLink="/sessions"
+      mat-icon-button
+      aria-label="Go back to sessions page"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Create New Session</h1>
+  </section>
+
+  <section class="sessions-form">
+    <mat-form-field>
+      <mat-label>Patient Name</mat-label>
+      <input matInput placeholder="ex. Jane Doe" />
+    </mat-form-field>
+
+    <div class="sessions-form-datetime-picker-container">
+      <mat-form-field>
+        <mat-label>Session Start Date</mat-label>
+        <input matInput [matDatepicker]="datepicker" />
+        <mat-datepicker #datepicker />
+        <mat-datepicker-toggle [for]="datepicker" matSuffix />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Sesssion Start Time</mat-label>
+        <input matInput [matTimepicker]="timepicker" />
+        <mat-timepicker #timepicker />
+        <mat-timepicker-toggle [for]="timepicker" matSuffix />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Session Duration</mat-label>
+      <input type="number" matInput placeholder="ex. 90 (minutes)" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Psychologist</mat-label>
+      <input matInput placeholder="ex. Muhammad Rafli Afriansyah Ikhsan" />
+    </mat-form-field>
+
+    <button mat-flat-button>Create Session</button>
+  </section>
+</main>

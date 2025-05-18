@@ -4,6 +4,7 @@ import { UsersComponent } from './users/users.component';
 import { SessionsComponent } from './sessions/sessions.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { UsersFormComponent } from './users/users-form/users-form.component';
+import { SessionsFormComponent } from './sessions/sessions-form/sessions-form.component';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,11 @@ export const routes: Routes = [
     title: 'Sessions | Dalpa',
     path: 'sessions',
     component: SessionsComponent,
+  },
+  {
+    title: 'Create a New Session | Dalpa',
+    path: 'sessions/create',
+    component: SessionsFormComponent,
   },
   {
     title: 'Payments | Dalpa',
