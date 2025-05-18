@@ -1,0 +1,42 @@
+<main>
+  <section class="payments-form-header-container">
+    <button
+      routerLink="/payments"
+      mat-icon-button
+      aria-label="Go back to payments page"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Create New Payment</h1>
+  </section>
+
+  <section class="payments-form">
+    <mat-form-field>
+      <mat-label>Patient Name</mat-label>
+      <input matInput placeholder="ex. Jane Doe" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Amount</mat-label>
+      <input type="number" matInput placeholder="ex. 500000" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select>
+        <mat-option value="unpaid">Unpaid</mat-option>
+        <mat-option value="paid">Paid</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Payment Method</mat-label>
+      <mat-select>
+        <mat-option value="cash">Cash</mat-option>
+        <mat-option value="qris">QRIS</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button>Create Payment</button>
+  </section>
+</main>

@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CurrencyPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-payments',
@@ -22,6 +23,7 @@ import { CurrencyPipe } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     CurrencyPipe,
+    RouterLink
   ],
 })
 export class PaymentsComponent implements AfterViewInit {
