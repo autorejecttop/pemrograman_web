@@ -54,12 +54,10 @@ html {
     )
   );
 
-  #users-container,
-  #sessions-container {
+  main {
     padding: 0px 32px;
 
-    #users-header-container,
-    #sessions-header-container {
+    .header-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -72,8 +70,7 @@ html {
       );
     }
 
-    #users-filter,
-    #sessions-filter {
+    .filter {
       &,
       input,
       mat-label {
