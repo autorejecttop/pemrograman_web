@@ -1,0 +1,35 @@
+body {
+  display: flex;
+  justify-content: center;
+  padding: 36px 0;
+
+  main {
+    height: 100%;
+    width: 768px;
+    padding: 16px;
+    border-radius: 16px;
+    background-color: #f0f0f0;
+
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+      padding: 4px;
+    }
+
+    table {
+      width: 100%;
+
+      #kelipatan {
+        padding: 0 32px;
+      }
+
+      .multiples {
+        background-color: palegreen;
+      }
+    }
+  }
+}
