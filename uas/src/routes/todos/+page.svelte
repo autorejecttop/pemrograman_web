@@ -1,24 +1,7 @@
 <script lang="ts">
-	const dummyTodos = $state([
-		{
-			id: 1,
-			name: 'Todo 1',
-			description: 'Description 1',
-			status: 'Pending'
-		},
-		{
-			id: 2,
-			name: 'Todo 2',
-			description: 'Description 2',
-			status: 'In Progress'
-		},
-		{
-			id: 3,
-			name: 'Todo 3',
-			description: 'Description 3',
-			status: 'Done'
-		}
-	]);
+	const { data } = $props();
+
+	const todos = $state(data.todos);
 </script>
 
 <div class="flex items-center justify-between">
@@ -40,12 +23,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each dummyTodos as todo, index}
+		{#each todos as todo, index}
 			<tr>
 				<td>{index + 1}</td>
 				<td>{todo.name}</td>
 				<td>{todo.description}</td>
-				<td>{todo.status}</td>
+				<td>{todo.status.toUpperCase()}</td>
 			</tr>
 		{/each}
 	</tbody>

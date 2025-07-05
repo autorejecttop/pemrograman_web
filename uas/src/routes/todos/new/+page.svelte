@@ -25,10 +25,9 @@
 				<td><label for="status">Status</label></td>
 				<td>
 					<select name="status" id="status">
-						<!-- TODO: iterate this and make it title case for the placeholder -->
-						<option value="pending">Pending</option>
-						<option value="in progress">In Progress</option>
-						<option value="done">Done</option>
+						<option value="pending">PENDING</option>
+						<option value="in progress">IN PROGRESS</option>
+						<option value="done">DONE</option>
 					</select>
 				</td>
 			</tr>
