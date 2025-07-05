@@ -14,5 +14,18 @@ export const session = sqliteTable('session', {
 	expiresAt: integer('expires_at', { mode: 'timestamp' }).notNull()
 });
 
+export const todos = sqliteTable('todos', {
+	id: integer('id').primaryKey({ autoIncrement: true }),
+	name: text('name').notNull(),
+	description: text('description'),
+	status: text('status', { enum: ['pending', 'in progress', 'done'] })
+		.default('pending')
+		.notNull(),
+	userId: text('user_id')
+		.notNull()
+		.references(() => user.id)
+});
+
 export type Session = typeof session.$inferSelect;
 export type User = typeof user.$inferSelect;
+export type Todo = typeof todos.$inferSelect;
