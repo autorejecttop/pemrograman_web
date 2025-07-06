@@ -25,53 +25,55 @@
 </script>
 
 <div class="flex items-center justify-between">
-	<h1 class="mb-0 text-3xl">Todos</h1>
+	<h1 class="mb-0 text-3xl text-[#fff2eb]">Todos</h1>
 	<a
 		href="/todos/new"
 		aria-label="Add Todo"
-		class="icon-[solar--add-square-bold] text-6xl text-blue-600"
+		class="icon-[solar--add-square-bold] text-6xl text-blue-700 hover:brightness-90"
 	></a>
 </div>
 
-<table>
-	<thead>
-		<tr>
-			<th>No</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Status</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each todos as todo, index}
+<div class="scrollbar-slim h-full overflow-y-scroll">
+	<table>
+		<thead>
 			<tr>
-				<td class="align-middle">{index + 1}</td>
-				<td class="align-middle">{todo.name}</td>
-				<td class="align-middle">{todo.description}</td>
-				<td class="align-middle">
-					<select
-						onchange={() => handleStatusChange(todo)}
-						name="status"
-						id="status"
-						bind:value={todo.status}
-					>
-						<option value="pending">PENDING</option>
-						<option value="in progress">IN PROGRESS</option>
-						<option value="done">DONE</option>
-					</select>
-				</td>
-				<td class="align-middle">
-					<button
-						aria-label="Delete"
-						onclick={() => handleDeleteTodo(todo)}
-						class="block rounded-sm bg-red-600"
-					>
-						<span class="icon-[typcn--delete] block text-4xl text-white hover:cursor-pointer"
-						></span>
-					</button>
-				</td>
+				<th class="text-lg text-[#fff2eb]">No</th>
+				<th class="text-lg text-[#fff2eb]">Name</th>
+				<th class="text-lg text-[#fff2eb]">Description</th>
+				<th class="text-lg text-[#fff2eb]">Status</th>
+				<th class="text-lg text-[#fff2eb]">Actions</th>
 			</tr>
-		{/each}
-	</tbody>
-</table>
+		</thead>
+		<tbody class="font-bold">
+			{#each todos as todo, index}
+				<tr>
+					<td class="align-middle">{index + 1}</td>
+					<td class="align-middle">{todo.name}</td>
+					<td class="align-middle">{todo.description}</td>
+					<td class="align-middle">
+						<select
+							onchange={() => handleStatusChange(todo)}
+							name="status"
+							id="status"
+							bind:value={todo.status}
+						>
+							<option value="pending">PENDING</option>
+							<option value="in progress">IN PROGRESS</option>
+							<option value="done">DONE</option>
+						</select>
+					</td>
+					<td class="align-middle">
+						<button
+							aria-label="Delete"
+							onclick={() => handleDeleteTodo(todo)}
+							class="block rounded-sm bg-red-600"
+						>
+							<span class="icon-[typcn--delete] block text-4xl text-white hover:cursor-pointer"
+							></span>
+						</button>
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</div>

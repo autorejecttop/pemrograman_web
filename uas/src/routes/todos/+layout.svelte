@@ -4,12 +4,14 @@
 	const { children } = $props();
 </script>
 
-<main class="prose m-auto max-w-5xl p-4">
-	<form action="/login?/logout" method="POST">
-		<button aria-label="Logout" type="submit">Logout</button>
-	</form>
+<form action="/login?/logout" method="POST">
+	<button
+		aria-label="Logout"
+		type="submit"
+		class="flex items-center gap-2 text-xl font-bold text-[#fff2eb] underline hover:cursor-pointer hover:brightness-90"
+	>
+		<span class="icon-[solar--logout-2-bold]"></span> Logout
+	</button>
+</form>
 
-	<h1>Current width: {innerWidth.current} px</h1>
-
-	{@render children()}
-</main>
+{@render children()}

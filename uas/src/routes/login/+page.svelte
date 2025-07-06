@@ -5,30 +5,42 @@
 	let { form }: { form: ActionData } = $props();
 </script>
 
-<h1>Login/Register</h1>
-<form method="post" action="?/login" use:enhance>
-	<label>
-		Username
-		<input
-			name="username"
-			class="mt-1 rounded-md border border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-		/>
-	</label>
-	<label>
-		Password
-		<input
-			type="password"
-			name="password"
-			class="mt-1 rounded-md border border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-		/>
-	</label>
-	<button class="rounded-md bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
-		>Login</button
-	>
-	<button
-		formaction="?/register"
-		class="rounded-md bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
-		>Register</button
-	>
-</form>
-<p style="color: red">{form?.message ?? ''}</p>
+<div class="not-prose">
+	<h1 class="mb-8 text-3xl font-bold">Login/Register</h1>
+
+	<form method="POST" action="?/login" use:enhance>
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<label class="mr-8 font-bold" for="username">Username</label>
+					</td>
+					<td>
+						<input name="username" id="username" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label class="mr-8 font-bold" for="password">Password</label>
+					</td>
+					<td>
+						<input type="password" name="password" id="password" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="mt-4 flex gap-2">
+			<button
+				class="rounded-md bg-[#fff2eb] px-2 py-1 font-bold hover:cursor-pointer hover:brightness-90"
+				type="submit">Login</button
+			>
+			<button
+				class="rounded-md bg-[#fff2eb] px-2 py-1 font-bold hover:cursor-pointer hover:brightness-90"
+				formaction="?/register">Register</button
+			>
+		</div>
+	</form>
+
+	<p style="color: red">{form?.message ?? ''}</p>
+</div>
