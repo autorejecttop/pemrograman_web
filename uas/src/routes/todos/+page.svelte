@@ -3,14 +3,24 @@
 
 	const { data } = $props();
 
-	const todos: Todo[] = $state(data.todos);
+	let todos: Todo[] = $state(data.todos);
 
-	const onStatusChange = async (updatedTodo: Todo) => {
+	const handleStatusChange = async (updatedTodo: Todo) => {
 		// TODO: make this safer..?
 		await fetch(`/todos/${updatedTodo.id}`, {
 			method: 'PUT',
 			body: JSON.stringify(updatedTodo)
 		});
+	};
+
+	const handleDeleteTodo = async (deletedTodo: Todo) => {
+		const response = await fetch(`/todos/${deletedTodo.id}`, {
+			method: 'DELETE'
+		});
+
+		if (response.ok) {
+			todos = todos.filter((todo) => todo.id !== deletedTodo.id);
+		}
 	};
 </script>
 
@@ -30,17 +40,18 @@
 			<th>Name</th>
 			<th>Description</th>
 			<th>Status</th>
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 		{#each todos as todo, index}
 			<tr>
-				<td>{index + 1}</td>
-				<td>{todo.name}</td>
-				<td>{todo.description}</td>
-				<td>
+				<td class="align-middle">{index + 1}</td>
+				<td class="align-middle">{todo.name}</td>
+				<td class="align-middle">{todo.description}</td>
+				<td class="align-middle">
 					<select
-						onchange={() => onStatusChange(todo)}
+						onchange={() => handleStatusChange(todo)}
 						name="status"
 						id="status"
 						bind:value={todo.status}
@@ -49,6 +60,16 @@
 						<option value="in progress">IN PROGRESS</option>
 						<option value="done">DONE</option>
 					</select>
+				</td>
+				<td class="align-middle">
+					<button
+						aria-label="Delete"
+						onclick={() => handleDeleteTodo(todo)}
+						class="block rounded-sm bg-red-600"
+					>
+						<span class="icon-[typcn--delete] block text-4xl text-white hover:cursor-pointer"
+						></span>
+					</button>
 				</td>
 			</tr>
 		{/each}
