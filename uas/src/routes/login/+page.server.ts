@@ -83,6 +83,15 @@ export const actions: Actions = {
 			return fail(500, { message: 'An error has occurred' });
 		}
 		return redirect(302, '/todos');
+	},
+	logout: async (event) => {
+		if (!event.locals.session) {
+			return fail(401);
+		}
+		await auth.invalidateSession(event.locals.session.id);
+		auth.deleteSessionTokenCookie(event);
+
+		return redirect(302, '/login');
 	}
 };
 
